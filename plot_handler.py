@@ -1,12 +1,12 @@
 import plotly.graph_objects as go
 
 
-def plot_grid(master_grid):
+def plot_grid(master_grid_3D):
     cubes = []
     for a in range(20):
         for b in range(20):
             for c in range(20):
-                if master_grid.XYZ[a][b][c]:
+                if master_grid_3D[a][b][c]:
                     cubes.append(
                         go.Mesh3d(
                             x=[a, a, a + 1, a + 1, a, a, a + 1, a + 1],
