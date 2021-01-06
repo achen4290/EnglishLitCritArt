@@ -1,11 +1,11 @@
-from tkinter import Label, Canvas, Button, Tk
+from tkinter import Label, Canvas, Button, Tk, Listbox
 
 
-class ViewGUI2D:
+class grid_editor_GUI:
     def __init__(self, master_grid):
         self.master = Tk()
         self.master_grid = master_grid
-        self.master.title("2D grid editor")
+        self.master.title("Grid editor")
 
         # Big title
         self.label = Label(self.master, text="Artistic Representation of Reader Response - Andrew Chen",
@@ -49,12 +49,20 @@ class ViewGUI2D:
         self.reset_button_XZ = Button(self.master, text="Clear", command=self.reset_canvas(self.canvas_XZ))
         self.reset_button_YZ = Button(self.master, text="Clear", command=self.reset_canvas(self.canvas_YZ))
         self.reset_button_XY = Button(self.master, text="Clear", command=self.reset_canvas(self.canvas_XY))
-        self.reset_button_XZ.grid(row=5, column=1, ipadx=5, ipady=5)
-        self.reset_button_YZ.grid(row=5, column=4, ipadx=5, ipady=5)
-        self.reset_button_XY.grid(row=5, column=7, ipadx=5, ipady=5)
+        self.reset_button_XZ.grid(row=5, column=0, ipadx=5, ipady=5)
+        self.reset_button_YZ.grid(row=5, column=3, ipadx=5, ipady=5)
+        self.reset_button_XY.grid(row=5, column=6, ipadx=5, ipady=5)
+
+        # TODO Fill buttons
+        self.fill_button_XZ = Button(self.master, text="Fill", command=self.fill_canvas(self.canvas_XZ))
+        self.fill_button_YZ = Button(self.master, text="Fill", command=self.fill_canvas(self.canvas_YZ))
+        self.fill_button_XY = Button(self.master, text="Fill", command=self.fill_canvas(self.canvas_XY))
+        self.fill_button_XZ.grid(row=5, column=2, ipadx=5, ipady=5)
+        self.fill_button_YZ.grid(row=5, column=5, ipadx=5, ipady=5)
+        self.fill_button_XY.grid(row=5, column=8, ipadx=5, ipady=5)
 
         # Finish button
-        self.finish_button = Button(self.master, text="Finish", command=self.finish)  # TODO command to export grid
+        self.finish_button = Button(self.master, text="Save", command=self.finish)  # TODO command to export grid
         self.finish_button.grid(row=6, column=5, ipady=5)
 
         # Pixelated view button
@@ -78,14 +86,20 @@ class ViewGUI2D:
                 self.master_grid.YZ[i + 1][j + 1] = YZ_pixelated_matrix[i][j]
                 self.master_grid.XY[i + 1][j + 1] = XY_pixelated_matrix[i][j]
 
+    def fill_canvas(self, canvas):
+        def foo():
+            canvas.create_rectangle(0, 0, 360, 360, fill='black')
+
+        return foo
+
     def reset_canvas(self, canvas):  # for button presses
-        def ret():
+        def foo():
             canvas.delete('all')
             for i in range(18):
                 canvas.create_line(i * 20, 0, i * 20, 360)
                 canvas.create_line(0, i * 20, 360, i * 20)
 
-        return ret
+        return foo
 
     def set_canvas(self, canvas):  # for clearing the canvas
         canvas.delete('all')
@@ -132,3 +146,30 @@ class ViewGUI2D:
             if color != '':
                 return True
         return False
+
+
+class grid_plotter_GUI:
+    def __init__(self, filenames, selection):
+        self.master = Tk()
+        self.selection = selection
+        self.master.title("Grid plotter")
+        # Big title
+        self.label = Label(self.master, text="Select the grid to plot:",
+                           font=("Courier", 18))
+        self.label.pack()
+
+        # List box
+        self.listbox = Listbox(self.master, font=("Courier", 14))
+        index = 1
+        for filename in filenames:
+            self.listbox.insert(index, filename[:-5])
+        self.listbox.pack()
+
+        # Finish button
+        self.finish_button = Button(self.master, text="Display plot", command=self.finish)
+        self.finish_button.pack()
+        self.master.mainloop()
+
+    def finish(self):
+        self.selection[0] = self.listbox.get(self.listbox.curselection(), self.listbox.curselection())
+        self.master.destroy()
