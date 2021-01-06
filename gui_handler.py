@@ -8,7 +8,7 @@ class grid_editor_GUI:
         self.master.title("Grid editor")
 
         # Big title
-        self.label = Label(self.master, text="Artistic Representation of Reader Response - Andrew Chen",
+        self.label = Label(self.master, text="Artistic Representation of a Literary Criticism - Andrew Chen",
                            font=("Courier", 24))
         self.label.grid(row=0, column=0, columnspan=9, pady=10)
 
