@@ -41,8 +41,19 @@ class master_grids:
         self.YZ = [[False for i in range(20)] for j in range(20)]
         self.XY = [[False for i in range(20)] for j in range(20)]
 
+    def flip_list(self, list):
+        new_list = [[False for i in range(20)] for j in range(20)]
+        for i in range(20):
+            for j in range(20):
+                if list[i][j]:
+                    new_list[i][19 - j] = True
+        return new_list
+
     def set_XYZ_grid(self):
         self.XYZ = [[[True for i in range(20)] for j in range(20)] for k in range(20)]
+        self.XZ = self.flip_list(self.XZ)
+        self.YZ = self.flip_list(self.YZ)
+
         for i in range(1, 19):
             for j in range(1, 19):
                 if not self.XZ[i][j]:
@@ -101,16 +112,25 @@ class master_grids:
                         XZ_count[i][k] += 1
                         YZ_count[j][k] += 1
                         XY_count[i][j] += 1
-                        body_points.append([i][j][k])
+                        body_points.append([i, j, k])
 
         shuffle(face_points)
         shuffle(body_points)
         points = face_points + body_points
 
-        for p in points:
+        for p in points[0:int(len(face_points) + len(body_points) / 2)]:
             x, y, z = p
             if XZ_count[x][z] > 1 and YZ_count[y][z] > 1 and XY_count[x][y] > 1:
                 self.XYZ[x][y][z] = False
                 XZ_count[x][z] -= 1
                 YZ_count[y][z] -= 1
                 XY_count[x][y] -= 1
+
+    def count_cubes(self):
+        x = 0
+        for i in range(20):
+            for j in range(20):
+                for k in range(20):
+                    if self.XYZ[i][j][k]:
+                        x += 1
+        return x
