@@ -1,10 +1,6 @@
-import tkinter as TK
-
 import grid_handler as gd
 import gui_handler as gui_handler
 
-master_grid = gd.empty_grid()
+master_grid = gd.master_grids()
 
-root = TK.Tk()
-my_gui = gui_handler.ViewGUI2D(root)
-root.mainloop()
+my_gui = gui_handler.ViewGUI2D(master_grid)

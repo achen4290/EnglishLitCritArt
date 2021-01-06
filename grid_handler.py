@@ -1,4 +1,4 @@
-def empty_grid():
+def empty_3Dgrid():
     grid = [[[False for i in range(20)] for j in range(20)] for k in range(20)]
     for i in range(20):
         grid[0][0][i] = True
@@ -29,3 +29,11 @@ def preset_animals():
 def preset_braingames():
     # TODO - get grid for brain games
     pass
+
+
+class master_grids:
+    def __init__(self):
+        self.XYZ = empty_3Dgrid()
+        self.XZ = [[False for i in range(20)] for j in range(20)]
+        self.YZ = [[False for i in range(20)] for j in range(20)]
+        self.XY = [[False for i in range(20)] for j in range(20)]
