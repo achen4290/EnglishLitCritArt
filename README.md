@@ -21,7 +21,7 @@ There are 2 buttons for each canvas:
 1. Fill (fills the entire canvas)
 
 There are also two buttons at the bottom of the entire window:
-1. Pixelate (The final object is rendered by a bunch of cubes, so this button pixelates your drawing so you can see exactly what to expect in the final product.
+1. Pixelate (The final object is rendered by a bunch of cubes; this button pixelates your drawing so you can see exactly what to expect in the final product.
 2. Save (Saves your drawings and closes the grid editor)
 
 Each of the 3 views (XZ, YZ, XY) represent what it will look like if you view the 3D object from a location perpendicular to that plane.
@@ -31,7 +31,7 @@ The grid plotter is accessed by running the "main_plotter" file. It looks like t
 
 ![Grid plotter screenshot](https://cdn.discordapp.com/attachments/734540453541838969/796516197692473414/Screen_Shot_2021-01-06_at_6.10.53_PM.png)
 
-It is simply a menu to choose which grid you want to plot. You should see 4 grids in the menu:
+This is a menu to choose which grid you want to plot. You should see 4 grids in the menu (the first three are built-in, the last one is the grid you made using the editor):
 1. Faces (happy face, sad face, and surprised face)
 2. Shapes (circle, rectangle, and triangle)
 3. Brain Games (One view is BRAIN, one view is GAMES, and there is no XY view)
