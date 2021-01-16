@@ -1,5 +1,5 @@
 # Artistic Representation of a Lit Crit
-Made by Andrew Chen for Mrs. Martin's Pd4 "English 12 AP" class.
+Made by Andrew Chen for Mrs. Martin's Pd3 "English 12 AP" class.
 
 ## Goal
 I was inspired by the [Brain Games intro](https://www.youtube.com/watch?v=P7PCaoh_Ba0) to automate the process of creating a 3D work of art that looks completely different depending on the viewing angle.
